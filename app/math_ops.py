@@ -1,3 +1,6 @@
-def add(a int,b:int)->int: return a+b
-def subtract(a:int,b:int)->int: return a -b
-unused_var = 42
+def add(a: int, b: int) -> int:
+    return a + b
+
+
+def subtract(a: int, b: int) -> int:
+    return a - b
