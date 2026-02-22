@@ -1,5 +1,0 @@
-name: lint-and-format
-on: [push]
-jobs:
-  - name: ruff-action
-  uses: astral-sh/ruff-action@v3.6.1
