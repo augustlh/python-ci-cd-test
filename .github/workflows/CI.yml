@@ -1,4 +1,7 @@
 name: Continuous Integration (CI)
+
+permissions:
+  contents: read
 on:
   push:
     branches: [ "main" ]
@@ -12,20 +15,27 @@ on:
       - 'tests/**'
 
 jobs:
-  lint:
-    name: Lint with Ruff
+  ruff-lint:
+    name: Lint and Format check with Ruff
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
         
-      - name: Lint with Ruff
+      - name: Install Ruff
         uses: astral-sh/ruff-action@v3
+        
+      - name: Lint with Ruff
+        run: ruff check
+        
+      - name: Check formatting with Ruff
+        run: ruff format --check
+
 
   test:
     name: Run Python Tests
     runs-on: ubuntu-latest
-    needs: lint
+    needs: ruff-lint
     steps:
       - uses: actions/checkout@v6
 
