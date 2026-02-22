@@ -14,3 +14,37 @@ dev = [
     "pytest>=9.0.2",
     "ruff>=0.15.2",
 ]
+
+[tool.ruff.lint]
+select = ["ALL"]
+preview = true
+ignore = [ 
+    "CPY",     # Random copyright things
+    "D100",    # Stupid docsting warnings
+    "D101",    # Stupid docsting warnings
+    "D102",    # Stupid docsting warnings   
+    "D103",    # Stupid docsting warnings
+    "D104",    # Stupid docsting warnings
+    "D105",    # Stupid docsting warnings
+    "D106",    # Stupid docsting warnings
+    "D107",    # Stupid docsting warnings
+    "E501",    # Line too long
+    "ISC001",  # Conflicts with formatter ruff
+    "FIX002",  # Line-contains-todo
+    "TD002",   # Missing author in TODO
+    "TD003",   # Missing-todo-link
+]
+
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"**/{tests,docs,tools}/*" = [
+    "E402",    # Ignore unused imports in test etc
+    "S101",    # Allow asserts in test
+    "ARG",     # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT",     # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+    "PLR2004", # Magic value used in comparison, ...
+    "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes
+]
