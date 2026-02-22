@@ -8,7 +8,7 @@ format:
 	uv run ruff format 
 
 test:
-	uv run pytest
+	uv run pytest -v
 
 run:
 	uv run fastapi dev
