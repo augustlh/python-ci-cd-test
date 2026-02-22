@@ -10,6 +10,7 @@ on:
   pull_request:
     branches: [ "main" ]
       paths: ["app/**", "tests/**"]
+  workflow_dispatch:
 
   ci:
     name: Lint and Test
