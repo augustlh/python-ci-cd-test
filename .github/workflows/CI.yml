@@ -23,6 +23,7 @@ jobs:
         uses: astral-sh/ruff-action@v3
 
   test:
+    name: Run Python Tests
     runs-on: ubuntu-latest
     needs: lint
     steps:
