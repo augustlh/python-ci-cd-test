@@ -1,4 +1,4 @@
-Jeg vil anbefale at i installerer `Ruff` som en VsCode extensions (eller lignende). I skal ogsaa bruge en type checker som `ty` eller `pyrefly` (begge bør være vscode extensions)
+Jeg vil anbefale at i installerer `Ruff` som en VsCode extension (eller lignende), da det er den linter vores github actions bruger. I skal ogsaa bruge en type checker som `ty` eller `pyrefly` (begge bør være vscode extensions)
 
 For at installere basic dependencies
 ```
