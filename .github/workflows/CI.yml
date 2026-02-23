@@ -1,4 +1,4 @@
-name: Continuous Integration (CI)
+name: CI
 
 permissions:
   contents: read
@@ -6,38 +6,35 @@ permissions:
 on:
   push:
     branches: [ "main" ]
-    paths: ["app/**", "tests/**"]
   pull_request:
-    branches: [ "main" ]
-    paths: ["app/**", "tests/**"]
   workflow_dispatch:
 
 jobs:
   ci:
-    name: Lint and Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-
-      - name: Install uv
+      
+      - name: Set up uv
         uses: astral-sh/setup-uv@v7
         with:
           version: "0.10.4"
-          enable-cache: true
-          
+
+      # We use `actions/setup-python@v6` because GitHub contains Python 3.12 with their runners, 
+      # It is ~1s quicker than setting up python with uv.
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
 
-      - name: Install dependencies
-        run: uv sync --locked --all-extras --dev 
-
       - name: Lint with Ruff
-        run: uv run ruff check --output-format=github
-        
+        run: uv run ruff check
+
       - name: Check formatting with Ruff
-        run: uv run ruff format --check --diff --output-format=github
+        run: uv run ruff format --check
+
+      - name: Typecheck with Ty
+        run: uv run ty check
 
       - name: Run tests
         run: uv run pytest -v
