@@ -18,48 +18,35 @@ dev = [
 
 [tool.ruff]
 preview = true
+target-version = "py312"
 
 [tool.ruff.lint]
-select = ["ALL"]
-ignore = [
-    "CPY",      # Random copyright things
-    "T2",       # Alows print statements lmao
-    "FURB118",  # Random garbage rule
-    "D1",       # Stupid docstring stuff
-    "D401",     # This rule requiores docstring to be in a non-imperative-mood
-    "EM",       # Weird error messages
-    "ISC003",   # Weird string concatenation rules
-    "TRY003",   # Weird raise exception rules
-    "ERA001",   # This disallows out commented code
-    "SIM105", 
-    "PGH003",   # blanket-type-ignore
-    "D203",     # pydocstyle: one-blank-line-before-class
-    "D212",     # pydocstyle: multi-line-summary-first-line
-    "TD001",    # flake8-todos: invalid-todo-tag
-    "PYI011",   # typed-argument-default-in-stub
-    "PYI014",   # argument-default-in-stub
-    "PYI053",   # string-or-bytes-too-long
-    "FIX",      # Line-contains-todo
-    "TD002",    # Missing author in TODO
-    "TD003",    # Missing-todo-link
-    "PLR2004",  # Allow magic values
-    "COM812",   # missing-trailing-comma
+select = [
+    "F",     # pyflakes
+    "W",     # pycodestyle warnings
+    "E",     # pycodestyle errors
+    "I",     # isort
+    "UP",    # pyupgrade
+    "C4",    # flake8-comprehensions
+    "B",     # flake8-bugbear
+    "ANN",   # Mad if we forget type annotations, need this because ty is not very mature
+    "SIM",   # flake8-simplify
+    "PIE",   # flake8-PIE
+    "PYI",   # flake8-PYI
+    "RET",   # flake8-return
+    "ISC",   # flake8-string-concatenation
+    "PGH",   # pygrep-hooks
+    "RUF",   # ruff stuff
+    "PTH",   # pathlib stuff
+    "N",     # Enforces naming conventions
+    "Q",     # Enforces quote rules
 ]
-fixable = ["ALL"]
-unfixable = []
+ignore = [
+    "E501",  # We let the formatter handle long lines etc.
+]
 
 [tool.ruff.format]
 docstring-code-format = true 
 
-# Potentially needs this if stuff is in .app
 #[tool.ty.environment]
 #root = ["./app"]
-
-[tool.ruff.lint.per-file-ignores]
-"**/{tests,docs,tools}/*" = [
-    "E402",    # Ignore unused imports in test etc
-    "S101",    # Allow asserts in test
-    "ARG",     # Unused function args -> fixtures nevertheless are functionally relevant...
-    "FBT",     # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
-    "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes
-]
